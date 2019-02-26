@@ -1,11 +1,13 @@
 package pl.sauermann.petclinic.services.map;
 
+import org.springframework.stereotype.Service;
 import pl.sauermann.petclinic.model.Pet;
-import pl.sauermann.petclinic.services.CrudService;
+import pl.sauermann.petclinic.services.PetResposiotyService;
 
 import java.util.Set;
 
-public class PetMapService extends AbstractMapService<Pet, Long> implements CrudService<Pet, Long> {
+@Service
+public class PetMapService extends AbstractMapService<Pet, Long> implements PetResposiotyService {
 
     @Override
     public Set<Pet> findAll() {
@@ -24,7 +26,7 @@ public class PetMapService extends AbstractMapService<Pet, Long> implements Crud
 
     @Override
     public Pet save(Pet pet) {
-        return super.save(pet.getId(), pet);
+        return super.save(pet);
     }
 
     @Override
