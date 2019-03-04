@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.sauermann.petclinic.services.map.OwnerMapService;
 
+@RequestMapping({"/owners"})
 @Controller
 public class OwnerController {
 
@@ -14,7 +15,7 @@ public class OwnerController {
         this.ownerMapService = ownerMapService;
     }
 
-    @RequestMapping({"/owners","/owners/owners"})
+    @RequestMapping({"",".html", "/find"})
     public String listOfOwners(Model model) {
         model.addAttribute("owners", ownerMapService.findAll());
         return "owners/owners";

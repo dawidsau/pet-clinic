@@ -1,0 +1,5 @@
+pl\sauermann\petclinic\controllers\VetController.class
+pl\sauermann\petclinic\controllers\IndexController.class
+pl\sauermann\petclinic\controllers\OwnerController.class
+pl\sauermann\petclinic\PetClinicApplication.class
+pl\sauermann\petclinic\bootstrap\DataLoader.class

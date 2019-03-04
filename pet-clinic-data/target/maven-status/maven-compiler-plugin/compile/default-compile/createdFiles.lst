@@ -1,0 +1,14 @@
+pl\sauermann\petclinic\services\map\AbstractMapService.class
+pl\sauermann\petclinic\services\CrudService.class
+pl\sauermann\petclinic\model\Owner.class
+pl\sauermann\petclinic\services\OwnerRepositoryService.class
+pl\sauermann\petclinic\services\PetResposiotyService.class
+pl\sauermann\petclinic\services\map\PetMapService.class
+pl\sauermann\petclinic\services\map\VetMapService.class
+pl\sauermann\petclinic\model\Person.class
+pl\sauermann\petclinic\services\map\OwnerMapService.class
+pl\sauermann\petclinic\model\BaseEntity.class
+pl\sauermann\petclinic\services\VetRepositoryService.class
+pl\sauermann\petclinic\model\Pet.class
+pl\sauermann\petclinic\model\Vet.class
+pl\sauermann\petclinic\model\PetType.class

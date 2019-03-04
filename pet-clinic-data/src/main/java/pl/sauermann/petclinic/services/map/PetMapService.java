@@ -2,12 +2,12 @@ package pl.sauermann.petclinic.services.map;
 
 import org.springframework.stereotype.Service;
 import pl.sauermann.petclinic.model.Pet;
-import pl.sauermann.petclinic.services.PetResposiotyService;
+import pl.sauermann.petclinic.services.PetRepositoryService;
 
 import java.util.Set;
 
 @Service
-public class PetMapService extends AbstractMapService<Pet, Long> implements PetResposiotyService {
+public class PetMapService extends AbstractMapService<Pet, Long> implements PetRepositoryService {
 
     @Override
     public Set<Pet> findAll() {
