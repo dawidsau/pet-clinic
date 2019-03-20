@@ -1,5 +1,6 @@
 package pl.sauermann.petclinic.services.map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import pl.sauermann.petclinic.model.Pet;
 import pl.sauermann.petclinic.services.PetRepositoryService;
@@ -7,6 +8,7 @@ import pl.sauermann.petclinic.services.PetRepositoryService;
 import java.util.Set;
 
 @Service
+@Profile({"default","map"})
 public class PetMapService extends AbstractMapService<Pet, Long> implements PetRepositoryService {
 
     @Override

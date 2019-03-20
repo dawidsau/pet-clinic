@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -12,9 +13,10 @@ import java.util.Set;
 @Table(name = "vets")
 public class Vet extends Person {
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "vet_specialities",joinColumns = @JoinColumn (name = "vets_id"),
-                                    inverseJoinColumns = @JoinColumn(name =  "speciality_id"))
-    private Set<Speciality> specialities;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "vet_specialities",
+            joinColumns = @JoinColumn(name = "vet_id"),
+            inverseJoinColumns = @JoinColumn(name = "speciality_id"))
+    private Set<Speciality> specialities = new HashSet<>();
 
 }

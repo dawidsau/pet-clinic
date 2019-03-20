@@ -1,5 +1,6 @@
 package pl.sauermann.petclinic.services.map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import pl.sauermann.petclinic.model.Owner;
 import pl.sauermann.petclinic.services.OwnerRepositoryService;
@@ -7,6 +8,7 @@ import pl.sauermann.petclinic.services.OwnerRepositoryService;
 import java.util.Set;
 
 @Service
+@Profile({"default","map"})
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerRepositoryService {
 
     @Override

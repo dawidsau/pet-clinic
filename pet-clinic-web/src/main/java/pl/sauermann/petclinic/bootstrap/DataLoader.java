@@ -2,12 +2,8 @@ package pl.sauermann.petclinic.bootstrap;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import org.thymeleaf.expression.Sets;
 import pl.sauermann.petclinic.model.*;
-import pl.sauermann.petclinic.services.OwnerRepositoryService;
-import pl.sauermann.petclinic.services.PetTypeRepositoryService;
-import pl.sauermann.petclinic.services.SpecialitiesRepositoryService;
-import pl.sauermann.petclinic.services.VetRepositoryService;
+import pl.sauermann.petclinic.services.*;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -20,15 +16,17 @@ public class DataLoader implements CommandLineRunner {
     private final VetRepositoryService vetRepositoryService;
     private final PetTypeRepositoryService petTypeRepositoryService;
     private final SpecialitiesRepositoryService specialitiesRepositoryService;
+    private final VisitRepositoryService visitRepositoryService;
 
     public DataLoader(OwnerRepositoryService ownerRepositoryService,
                       VetRepositoryService vetRepositoryService,
                       PetTypeRepositoryService petTypeRepositoryService,
-                      SpecialitiesRepositoryService specialitiesRepositoryService) {
+                      SpecialitiesRepositoryService specialitiesRepositoryService, VisitRepositoryService visitRepositoryService) {
         this.ownerRepositoryService = ownerRepositoryService;
         this.vetRepositoryService = vetRepositoryService;
         this.petTypeRepositoryService = petTypeRepositoryService;
         this.specialitiesRepositoryService = specialitiesRepositoryService;
+        this.visitRepositoryService = visitRepositoryService;
     }
 
     @Override
@@ -48,42 +46,57 @@ public class DataLoader implements CommandLineRunner {
         dog.setName("Cat");
         petTypeRepositoryService.save(cat);
 
+
         Speciality radiology = new Speciality();
         radiology.setDescription("Radiology");
-        Speciality saveRadiology = specialitiesRepositoryService.save(radiology);
+        Speciality savedRadiology = specialitiesRepositoryService.save(radiology);
 
         Speciality surgery = new Speciality();
         surgery.setDescription("Surgery");
-        Speciality saveSurgery = specialitiesRepositoryService.save(surgery);
+        Speciality savedSurgery = specialitiesRepositoryService.save(surgery);
 
         Speciality dentistry = new Speciality();
         dentistry.setDescription("Dentistry");
-        Speciality saveDentistry = specialitiesRepositoryService.save(dentistry);
+        Speciality savedDentistry = specialitiesRepositoryService.save(dentistry);
 
 
         Owner owner = new Owner();
         owner.setFirstName("Arni");
         owner.setLastName("Szwar");
-        owner.setPets(new HashSet<>(Arrays.asList(new Pet("Some dog", dog, owner, LocalDate.now()))));
+        Pet pet1 = new Pet("Some dog", dog, owner, LocalDate.now(),null);
+        owner.setPets(new HashSet<>(Arrays.asList(pet1)));
         ownerRepositoryService.save(owner);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Niki");
         owner2.setLastName("Minash");
-        owner2.setPets(new HashSet<>(Arrays.asList(new Pet("Some cat", cat, owner2, LocalDate.now()))));
+        Pet pet2 = new Pet("Some cat", cat, owner2, LocalDate.now(),null);
+        owner2.setPets(new HashSet<>(Arrays.asList(pet2)));
 
         ownerRepositoryService.save(owner2);
         System.out.println();
         Vet vet1 = new Vet();
         vet1.setFirstName("Abbi");
         vet1.setLastName("Bak");
-        vet1.setSpecialities(new HashSet<>(Arrays.asList(saveDentistry)));
+//        vet1.getSpecialities().add(savedRadiology);
         vetRepositoryService.save(vet1);
 
         Vet vet2 = new Vet();
         vet2.setFirstName("Lak");
         vet2.setLastName("Law");
-        vet2.setSpecialities(new HashSet<>(Arrays.asList(saveSurgery)));
+//        vet2.getSpecialities().add(savedSurgery);
         vetRepositoryService.save(vet2);
+
+        Visit visit1 = new Visit();
+        visit1.setPet(pet1);
+        visit1.setLocalDate(LocalDate.now());
+
+        visitRepositoryService.save(visit1);
+
+        Visit visit2 = new Visit();
+        visit2.setPet(pet2);
+        visit2.setLocalDate(LocalDate.now());
+
+        visitRepositoryService.save(visit2);
     }
 }
